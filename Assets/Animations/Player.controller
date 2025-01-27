@@ -17,17 +17,17 @@ BlendTree:
     m_DirectBlendParameter: Horizontal
     m_Mirror: 0
   - serializedVersion: 2
-    m_Motion: {fileID: 7400000, guid: 23b95c1c9f39345baa94426e18066e71, type: 2}
+    m_Motion: {fileID: 7400000, guid: 016a4816f44be439f993342cba24a1f3, type: 2}
     m_Threshold: 0
-    m_Position: {x: 0, y: 1}
+    m_Position: {x: 1, y: 0}
     m_TimeScale: 1
     m_CycleOffset: 0
     m_DirectBlendParameter: Horizontal
     m_Mirror: 0
   - serializedVersion: 2
-    m_Motion: {fileID: 7400000, guid: 016a4816f44be439f993342cba24a1f3, type: 2}
+    m_Motion: {fileID: 7400000, guid: 23b95c1c9f39345baa94426e18066e71, type: 2}
     m_Threshold: 0
-    m_Position: {x: 1, y: 0}
+    m_Position: {x: 0, y: 1}
     m_TimeScale: 1
     m_CycleOffset: 0
     m_DirectBlendParameter: Horizontal
