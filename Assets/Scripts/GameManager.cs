@@ -12,7 +12,8 @@ public class GameManager : MonoBehaviour
     public UIManager UIManager { get; private set; }
     
     public TimeManager TimeManager { get; private set; }
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
+    
+    public AudioManager AudioManager { get; private set; }
 
     private void Awake()
     {
@@ -23,11 +24,7 @@ public class GameManager : MonoBehaviour
         ScoreManager = GetComponent<ScoreManager>();
         UIManager = GetComponent<UIManager>();
         TimeManager = GetComponent<TimeManager>();
-    }
-
-    private void Start()
-    {
-        TimeManager.OnTimeUp += TimeUpHandler;
+        AudioManager = GetComponent<AudioManager>();
     }
     
     private void TimeUpHandler()
@@ -37,16 +34,22 @@ public class GameManager : MonoBehaviour
 
     public void StartGame()
     {
+        TimeManager.OnTimeUp += TimeUpHandler;
+        
         TimeManager.ResetTime();
         UIManager.StartGame();
         ScoreManager.StartGame();
+        AudioManager.StartGame();
         TimeManager.StartTimer();
     }
 
     public void StopGame()
     {
+        TimeManager.OnTimeUp -= TimeUpHandler;
+        
         TimeManager.StopTimer();
         UIManager.StopGame();
+        AudioManager.StopGame();
         RupeeManager.StopGame();
     }
 }

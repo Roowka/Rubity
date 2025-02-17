@@ -6,6 +6,7 @@ using UnityEngine;
 public class UIManager : MonoBehaviour
 {
    public TextMeshProUGUI score;
+   public TextMeshProUGUI bestScore;
    public TextMeshProUGUI timer;
    public GameObject startButton;
    private GameManager _gm;
@@ -18,6 +19,7 @@ public class UIManager : MonoBehaviour
    private void Update()
    {
       score.text = $"Score: {_gm.ScoreManager.Score}";
+      bestScore.text = $"Highest: {_gm.ScoreManager.BestScore}";
       timer.text = $"{TimeSpan.FromSeconds(_gm.TimeManager.RemaningTime):mm\\:ss}";
    }
 

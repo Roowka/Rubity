@@ -9,6 +9,7 @@ public class RupeeManager : MonoBehaviour
    public Transform container;
    public Rupee prefab;
    public float spawnDelay = 2f;
+   public List<RupeeData> rupeeDataList = new List<RupeeData>();
    private readonly List<Rupee> _rupees = new List<Rupee>();
    private Coroutine _spawnRoutine;
    
@@ -28,8 +29,10 @@ public class RupeeManager : MonoBehaviour
 
    private void Spawn()
    {
+      var data = rupeeDataList[UnityEngine.Random.Range(0, rupeeDataList.Count)];
       var rupee = Instantiate(prefab, spawner.position, Quaternion.identity);
       rupee.transform.parent = container;
+      rupee.Data = data;
       AddRupee(rupee);
    }
 
