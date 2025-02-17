@@ -14,11 +14,6 @@ public class RupeeManager : MonoBehaviour
    
    public event Action<Rupee> OnRupeeCollected;
 
-   private void Start()
-   {
-      StartSpawning();
-   }
-
    public void StartSpawning()
    {
       _spawnRoutine = StartCoroutine(SpawnRoutine());
@@ -48,6 +43,26 @@ public class RupeeManager : MonoBehaviour
    {
       rupee.OnCollected -= RupeeCollectedHandler;
       _rupees.Remove(rupee);
+      Destroy(rupee.gameObject);
+   }
+
+   private void StopSpawning()
+   {
+      if (_spawnRoutine == null) return;
+      StopCoroutine(_spawnRoutine);
+      _spawnRoutine = null;
+   }
+
+   public void StopGame()
+   {
+      StopSpawning();
+
+      for (var i = _rupees.Count - 1; i >= 0; i--)
+      {
+         RemoveRupee(_rupees[i]);
+      }
+      
+      _rupees.Clear();
    }
 
    private void RupeeCollectedHandler(Rupee rupee)

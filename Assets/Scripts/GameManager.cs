@@ -25,14 +25,28 @@ public class GameManager : MonoBehaviour
         TimeManager = GetComponent<TimeManager>();
     }
 
-    void Start()
+    private void Start()
     {
-        
+        TimeManager.OnTimeUp += TimeUpHandler;
+    }
+    
+    private void TimeUpHandler()
+    {
+        StopGame();
     }
 
-    // Update is called once per frame
-    void Update()
+    public void StartGame()
     {
-        
+        TimeManager.ResetTime();
+        UIManager.StartGame();
+        ScoreManager.StartGame();
+        TimeManager.StartTimer();
+    }
+
+    public void StopGame()
+    {
+        TimeManager.StopTimer();
+        UIManager.StopGame();
+        RupeeManager.StopGame();
     }
 }

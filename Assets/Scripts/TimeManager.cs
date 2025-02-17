@@ -28,23 +28,17 @@ public class TimeManager : MonoBehaviour
         }
     }
 
-    private void Start()
-    {
-        ResetTime();
-        StartTimer();
-    }
-
-    private void ResetTime()
+    public void ResetTime()
     {
         RemaningTime = duration;
     }
 
-    private void StartTimer()
+    public void StartTimer()
     {
         IsRunning = true;
     }
 
-    private void StopTimer()
+    public void StopTimer()
     {
         IsRunning = false;
     }

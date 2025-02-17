@@ -12,6 +12,11 @@ public class ScoreManager : MonoBehaviour
         _gm.RupeeManager.OnRupeeCollected += RupeeCollectedHandler;
     }
 
+    public void StartGame()
+    {
+        Score = 0;
+    }
+
     private void RupeeCollectedHandler(Rupee rupee)
     {
         Score++;
