@@ -11,6 +11,8 @@ public class RupeeManager : MonoBehaviour
    public float spawnDelay = 2f;
    private readonly List<Rupee> _rupees = new List<Rupee>();
    private Coroutine _spawnRoutine;
+   
+   public event Action<Rupee> OnRupeeCollected;
 
    private void Start()
    {
@@ -33,5 +35,24 @@ public class RupeeManager : MonoBehaviour
    {
       var rupee = Instantiate(prefab, spawner.position, Quaternion.identity);
       rupee.transform.parent = container;
+      AddRupee(rupee);
+   }
+
+   private void AddRupee(Rupee rupee)
+   {
+      rupee.OnCollected += RupeeCollectedHandler;
+      _rupees.Add(rupee);
+   }
+
+   private void RemoveRupee(Rupee rupee)
+   {
+      rupee.OnCollected -= RupeeCollectedHandler;
+      _rupees.Remove(rupee);
+   }
+
+   private void RupeeCollectedHandler(Rupee rupee)
+   {
+      OnRupeeCollected?.Invoke(rupee);
+      RemoveRupee(rupee);
    }
 }

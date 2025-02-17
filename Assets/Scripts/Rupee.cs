@@ -3,6 +3,7 @@ using UnityEngine;
 
 public class Rupee : MonoBehaviour
 {
+    public event Action<Rupee> OnCollected;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -19,6 +20,7 @@ public class Rupee : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Player"))
         {
+            OnCollected?.Invoke(this);
             Destroy(gameObject);
         }
     }
